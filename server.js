@@ -17,22 +17,16 @@ const PORT = process.env.PORT || 5000
 
 app.use(express.json());
 
+app.get("/",(req,res) => {
+    res.send("shivkrupa insense server!")
+})
 app.use("/api/products", productRoutes);
 app.use("/api/users",userRoutes)
 app.use("/api/stripe",stripe)
+
 app.use(notFound)
 app.use(errorHandler)
 
-app.use('/api', createProxyMiddleware({
-    target: 'http://127.0.0.1:8000/',
-    headers: {
-        "Connection": "keep-alive"
-    },
-}));
-
-app.get("/",(req,res) => {
-    res.json('OK')
-})
 app.listen(PORT,() => {
     console.log(`server running on port ${PORT}`)
 })
