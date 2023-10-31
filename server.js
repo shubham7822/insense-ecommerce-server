@@ -30,6 +30,9 @@ app.use('/api', createProxyMiddleware({
     },
 }));
 
+app.get("/",(req,res) => {
+    res.json('OK')
+})
 app.listen(PORT,() => {
     console.log(`server running on port ${PORT}`)
 })
