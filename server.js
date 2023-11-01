@@ -6,7 +6,7 @@ const userRoutes = require("./routes/userRoutes");
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
 const stripe = require("./routes/stripe")
-
+const cors = require("cors");
 dotEnv.config()
 connectDB();
 
@@ -14,7 +14,9 @@ const app = express()
 
 const PORT = process.env.PORT || 5000
 
-
+app.use(cors({
+    origin:" https://shivkrupa.onrender.com"
+}))
 app.use(express.json());
 
 app.get("/",(req,res) => {
